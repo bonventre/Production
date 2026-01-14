@@ -1,0 +1,17 @@
+#include "Production/JobConfig/reco/Extracted.fcl"
+
+physics.producers.KKLine.ModuleSettings.SampleSurfaces : @local::Mu2eKinKal.producers.KKLine.ModuleSettings.SampleSurfaces
+
+physics.RecoPath: [
+  StrawDigisFromArtdaqFragments,
+  EWMProducer,
+  makeSH,
+  SimpleTimeCluster,
+  CosmicShowerFilter,
+  LineFinder,
+  KKLine,
+  KLFilter,
+  SelectReco
+   ]
+
+#include "Production/Processing/StationReco_epilog.fcl"

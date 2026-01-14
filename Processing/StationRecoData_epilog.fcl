@@ -1,0 +1,28 @@
+physics.producers.EWMProducer: {
+          @table::CommonMC.DigiProducers.EWMProducer
+          SpillType: 0
+      }
+physics.producers.StrawDigisFromArtdaqFragments: {
+          module_type: StrawDigisFromArtdaqFragments
+          saveWaveforms : true
+          diagLevel     : 0  # not used yet
+          missingDTCHeaders : false
+          debugBits: []
+          debugMode: 0
+          geography: []
+          keyOnMnid: false
+      }
+
+services.RandomNumberGenerator   : { defaultEngineKind: "MixMaxRng" }
+services.SeedService                    : @local::automaticSeeds
+services.SeedService.baseSeed : 8
+
+physics.RecoPath: [
+  StrawDigisFromArtdaqFragments,
+  EWMProducer,
+  @sequence::physics.RecoPath
+]
+
+physics.producers.makeSH.StrawDigiADCWaveformCollectionTag : "StrawDigisFromArtdaqFragments"
+physics.producers.makeSH.StrawDigiCollectionTag : "StrawDigisFromArtdaqFragments"
+physics.producers.SelectReco.StrawDigiCollection: "StrawDigisFromArtdaqFragments"

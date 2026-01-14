@@ -1,0 +1,25 @@
+#include "Production/JobConfig/recoMC/Extracted.fcl"
+
+physics.producers.KKLine.ModuleSettings.SampleSurfaces : @local::Mu2eKinKal.producers.KKLine.ModuleSettings.SampleSurfaces
+
+physics.RecoPath: [
+  StrawDigisFromArtdaqFragments,
+  EWMProducer,
+  makeSH,
+  SimpleTimeCluster,
+  CosmicShowerFilter,
+  LineFinder,
+  KKLine,
+  KLFilter,
+  SelectReco,
+  compressRecoMCs
+   ]
+
+physics.producers.compressRecoMCs.crvDigiMCIndexMapTag : ""
+physics.producers.compressRecoMCs.caloClusterMCTag : ""
+physics.producers.compressRecoMCs.crvCoincClusterMCTags : []
+physics.producers.compressRecoMCs.caloShowerStepTags : []
+physics.producers.compressRecoMCs.surfaceStepTags : []
+
+#include "Production/Processing/StationReco_epilog.fcl"
+#include "Production/Processing/StationReco_calibrations.fcl"
