@@ -1,0 +1,28 @@
+#include "Production/Processing/StationRecoData.fcl"
+
+physics.analyzers.StrawHitDiagnostics: {
+          module_type: StrawHitDiag
+          DigiDiag: true
+          MonteCarloDiag: false
+          UseStrawHitFlagCollection: false
+          ProtonBunchTime: EWMProducer
+          StrawHitFlagCollection: ""
+          TimeClusterCollection: SimpleTimeCluster
+          StrawDigiCollection: StrawDigisFromArtdaqFragments
+          StrawHitCollection: makeSH
+          ComboHitCollection: makeSH
+      }
+
+physics.EndPath : [
+  "StrawHitDiagnostics"
+]
+
+physics.RecoPath : [
+  "EWMProducer",
+  "StrawDigisFromArtdaqFragments",
+  "makeSH",
+  "SimpleTimeCluster"
+]
+
+physics.producers.SimpleTimeCluster.HitNonNoiseSelectionBits : ["EnergySelection"]
+physics.producers.SimpleTimeCluster.minNStrawHits : 6

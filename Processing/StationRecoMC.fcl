@@ -3,8 +3,6 @@
 physics.producers.KKLine.ModuleSettings.SampleSurfaces : @local::Mu2eKinKal.producers.KKLine.ModuleSettings.SampleSurfaces
 
 physics.RecoPath: [
-  StrawDigisFromArtdaqFragments,
-  EWMProducer,
   makeSH,
   SimpleTimeCluster,
   CosmicShowerFilter,
@@ -15,11 +13,16 @@ physics.RecoPath: [
   compressRecoMCs
    ]
 
+physics.EndPath: [
+  KinematicLineOutput
+]
+
 physics.producers.compressRecoMCs.crvDigiMCIndexMapTag : ""
 physics.producers.compressRecoMCs.caloClusterMCTag : ""
 physics.producers.compressRecoMCs.crvCoincClusterMCTags : []
 physics.producers.compressRecoMCs.caloShowerStepTags : []
 physics.producers.compressRecoMCs.surfaceStepTags : []
+physics.producers.SelectReco.TrkOnly : true
 
 #include "Production/Processing/StationReco_epilog.fcl"
 #include "Production/Processing/StationReco_calibrations.fcl"
